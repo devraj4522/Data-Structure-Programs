@@ -1,0 +1,161 @@
+A=[3 4;-5 -9]
+A =
+
+   3   4
+  -5  -9
+
+>> [e,d] = eig(A)
+e =
+
+   0.89443  -0.37139
+  -0.44721   0.92848
+
+d =
+
+Diagonal Matrix
+
+   1   0
+   0  -7
+
+>> fprintf("\nEigen Values  are: ")
+
+Eigen Values  are: >> eigenValues = diag(d)
+eigenValues =
+
+   1
+  -7
+
+>> eigen_Vector_1 = e(:,1)
+eigen_Vector_1 =
+
+   0.89443
+  -0.44721
+
+>> eigen_Vector_2 = e(:,2)
+eigen_Vector_2 =
+
+  -0.37139
+   0.92848
+
+>> fprintf("\n Eigen Vectors are: %d %d", eigen_Vector_1, eigen_Vector_2)
+
+ Eigen Vectors are: 0.894427 -0.447214
+>>
+>> % Check whether a given matrix is orthogonal or not.
+>>
+>> A=[3 4;-5 -9]
+A =
+
+   3   4
+  -5  -9
+  
+  
+  
+  
+  if A*A' ==eye(2)
+       fprintf("Matrix is orthogonal")
+   else
+       fprintf("Matrix is not orthogonal")
+end
+Matrix is not orthogonal>>
+>>
+>>
+>> %Checktwo vectors are Orthogonal or not.
+>>
+>> Vector1 = [2,3, 5]
+Vector1 =
+
+   2   3   5
+
+>> Vector2= [3,4 5]
+Vector2 =
+
+   3   4   5
+
+>> if dot(Vector1, Vector2) ==0
+       fprintf("Vectors are orthogonal")
+else
+      fprintf("Not Orthogonal")
+end
+Not Orthogonal>>
+>>
+>> Determine the eigenvalues of the inverse of a matrix
+error: 'Determine' undefined near line 1 column 1
+>>
+>>   %Determine the eigenvalues of the inverse of a matrix
+>>
+>> A=[3 4;-5 -9]
+A =
+
+   3   4
+  -5  -9
+
+>> Inverse_of_A = inv(A)
+Inverse_of_A =
+
+   1.28571   0.57143
+  -0.71429  -0.42857
+
+>> d1 = eig(Inverse_of_A)
+d1 =
+
+ 1.00000
+  -0.14286
+
+>>
+>>
+>> Check whether eigenvectors of a symmetric matrix are orthogonal or not.
+error: 'Check' undefined near line 1 column 1
+>>
+>> %Check whether eigenvectors of a symmetric matrix are orthogonal or not.
+>>
+>> Symmetric = [1,2,4;2,5,3;4,3,6]
+Symmetric =
+
+   1   2   4
+   2   5   3
+   4   3   6
+
+>> [e,d] = eig(Symmetric)
+e =
+
+  -0.883954   0.208315   0.418605
+   0.060460  -0.836831   0.544113
+   0.463649   0.506280   0.727125
+
+d =
+
+Diagonal Matrix
+
+   -1.2349         0         0
+         0    2.6871         0
+         0         0   10.5477
+
+>> if e*e' ==eye(length(A))
+       fprintf("Orthogonal")
+else
+   fprintf("Not Orthogonal")
+end
+
+
+error: mx_el_eq: nonconformant arguments (op1 is 3x3, op2 is 2x2)
+>>
+>>
+>> if e*e' == eye(length(Symmetric))
+      fprintf("Orthogonal")
+else
+      fprintf("Not ...")
+end
+>> # Octave 5.2.0, Fri Aug 21 09:40:58 2020 GMT <unknown@DESKTOP-DEVRAJSINGH>
+
+
+
+                                                                                                                                                                                             
+error: 'a' undefined near line 1 column 19
+>> if e*e' == eye(length(Symmetric))
+      fprintf("Orthogonal")
+else
+      fprintf("Not ...")
+end
+Not ...>>
+
