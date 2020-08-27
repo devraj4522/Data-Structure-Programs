@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-// Structure for Node type creation
+// Structure for Node type creation in linked list
 struct Node{
     int data;
     struct Node *ptr;
