@@ -131,27 +131,7 @@ Diagonal Matrix
          0    2.6871         0
          0         0   10.5477
 
->> if e*e' ==eye(length(A))
-       fprintf("Orthogonal")
-else
-   fprintf("Not Orthogonal")
-end
 
-
-error: mx_el_eq: nonconformant arguments (op1 is 3x3, op2 is 2x2)
->>
->>
->> if e*e' == eye(length(Symmetric))
-      fprintf("Orthogonal")
-else
-      fprintf("Not ...")
-end
->> # Octave 5.2.0, Fri Aug 21 09:40:58 2020 GMT <unknown@DESKTOP-DEVRAJSINGH>
-
-
-
-                                                                                                                                                                                             
-error: 'a' undefined near line 1 column 19
 >> if e*e' == eye(length(Symmetric))
       fprintf("Orthogonal")
 else
