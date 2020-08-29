@@ -1,0 +1,159 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include <string.h>
+
+// Create an Array stack of ADT
+struct ArrayStack
+{
+    int top;
+    int size;
+    int *array;
+};
+
+struct ArrayStack *CreateStack(int sizetopass){
+    struct ArrayStack *stack;
+    stack = (struct ArrayStack *)malloc(sizeof(struct ArrayStack));
+    stack->top = -1;
+    stack->size = sizetopass;
+    stack->array = (int *)malloc(sizeof(int) * sizetopass);
+    return stack;
+}
+
+int isFull(struct ArrayStack *stack){
+    if (stack->top == stack->size - 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+int isEmpty(struct ArrayStack *stack){
+    if (stack->top == -1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+     
+}
+
+int  push(struct ArrayStack *stack, int item){
+    if (isFull(stack)) 
+        {
+            return -1;
+        }
+    int val = ++stack->top;
+    stack->array[val] = item; 
+    return 0;
+}
+
+int pop(struct ArrayStack *stack){
+    if (!(isEmpty(stack)))
+    {
+        int item = stack->array[stack->top];
+        return stack->array[stack->top--]; 
+    }
+    return -1;
+}
+
+// Function to choose Precedence
+int precedence(char ch){
+    switch (ch)
+    {
+    case '+':
+    case '-':
+        return 0;
+    case '*':
+    case '/':
+        return 1;
+    case '^':
+        return 2;
+    }
+    // Unknown Operator
+    return -1;
+    
+}
+
+// Check Operand
+
+int isOperand(char ch)
+{
+    if ((ch >='a' && ch <='z') || (ch>='A' && ch<='Z'))
+    {
+        return 1;
+    }
+    
+    return 0;
+}
+
+// Function to convert infix to postfix
+int infix_to_postfix(char *exp)
+{
+    int i, j;
+    // Create stack
+    struct ArrayStack *stack = CreateStack(strlen(exp));
+    
+    // push(stack, ')');
+    for (i = 0, j = -1; exp[i] != '\0'; i++)
+    {
+        // If the scanned character is operand add it to output.
+        if ( isOperand(exp[i]))
+        {
+            exp[++j] = exp[i];
+        }
+        // If the scanned characher is '(' i.e opening bracket. 
+        else if (exp[i] == '(')
+        {
+            push(stack, exp[i]);
+        }
+        // If the scanned character is closing bracket.
+        else if (exp[i] ==')')
+        {
+            // Until when stack is not empty and stack not encounter closing bracket
+            // it will pop and added to the expression.
+            while (stack->array[stack->top] !='(' && !isEmpty(stack))
+            {
+                exp[++j] = pop(stack);
+            }
+            // Pop the closing bracket.
+            pop(stack);
+        }
+        
+        else
+        {
+            // Operator is scanned
+            while (precedence(stack->array[stack->top]) >= precedence(exp[i]) && !isEmpty(stack))
+            {
+                exp[++j] = exp[i];
+                exp[++j] = pop(stack);
+            }
+            push(stack, exp[i]);
+            
+        }
+    }
+
+    //At last put all item left in the stack in the expression.  
+    while (!isEmpty(stack))
+        exp[++j] = pop(stack);
+        
+    // Put the '\0' as a breaking condition for the below printf.
+    exp[++j] = '\0';
+    printf("%s", exp);
+    
+    return 0;
+}
+
+int main(){
+    
+    char exp[100]; 
+    printf("\nEnter the infix expresion to evaluate into postfix: ");
+    scanf("%s", exp);
+    printf("\nPostfix expresion:\n");
+    infix_to_postfix(exp);
+    return 0;
+}
